@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:macro name="leg_gazebo" params="name load_force_sensors">
+
+        <!-- UNITREE PLUGINS -->
+	    <!-- Foot contact >
+	    <gazebo reference="${name}_lowerleg">
+		    <sensor name="${name}_foot_contact" type="contact">
+		    <update_rate>100</update_rate>
+		    <plugin name="contactPlugin" filename="libunitreeFootContactPlugin.so"/>
+		    <contact>
+		        <collision>${name}_lowerleg_fixed_joint_lump__${name}_foot_collision_1</collision>
+		    </contact>
+		    </sensor>
+	    </gazebo>
+
+
+	    <Visualization of Foot contacts. >
+	    <gazebo reference="${name}_foot">
+		    <visual>
+		        <plugin name="drawForcePlugin" filename="libunitreeDrawForcePlugin.so">
+		            <topicName>${name}_foot_contact</topicName>
+		        </plugin>
+		    </visual>
+	    </gazebo-->
+
+	    
+	    
+	    
+        <!-- GAZEBO-NATIVE PLUGINS -->
+        <gazebo reference="${name}_haa_joint">
+            <provideFeedback>true</provideFeedback>
+        </gazebo>
+        <gazebo reference="${name}_kfe_joint">
+            <provideFeedback>true</provideFeedback>
+        </gazebo>
+        <gazebo reference="${name}_hfe_joint">
+            <provideFeedback>true</provideFeedback>
+        </gazebo>
+        <xacro:if value="${load_force_sensors}">
+            <gazebo>
+                <plugin name="${name}_haa_sensor" filename="libgazebo_ros_ft_sensor.so">
+                    <robotNamespace>/internal_wrench/</robotNamespace>
+                    <updateRate>100.0</updateRate>
+                    <topicName>${name}_haa_joint</topicName>
+                    <jointName>${name}_haa_joint</jointName>
+                </plugin>
+            </gazebo>
+
+            <gazebo>
+                <plugin name="${name}_kfe_sensor" filename="libgazebo_ros_ft_sensor.so">
+                    <robotNamespace>/internal_wrench/</robotNamespace>
+                    <updateRate>100.0</updateRate>
+                    <topicName>${name}_kfe_joint</topicName>
+                    <jointName>${name}_kfe_joint</jointName>
+                </plugin>
+            </gazebo>
+   
+            <gazebo>
+                <plugin name="${name}_hfe_sensor" filename="libgazebo_ros_ft_sensor.so">
+                    <robotNamespace>/internal_wrench/</robotNamespace>
+                    <updateRate>100.0</updateRate>
+                    <topicName>${name}_hfe_joint</topicName>
+                    <jointName>${name}_hfe_joint</jointName>
+                </plugin>
+            </gazebo>
+        </xacro:if>
+        
+        <gazebo reference="${name}_hip">
+		    <mu1>0.2</mu1>
+    		<mu2>0.2</mu2>
+    		<material>Gazebo/DarkGrey</material>
+	    </gazebo>
+	    
+	    
+	    <gazebo reference="${name}_upperleg">
+	    	<mu1>0.2</mu1>
+	    	<mu2>0.2</mu2>
+	    	<self_collide>1</self_collide>
+	    	<material>Gazebo/DarkGrey</material>
+	    	<kp  value="1000000.0"/>
+	    	<kd  value="1.0"/>
+	    </gazebo>
+	    
+	    <gazebo reference="${name}_lowerleg">
+	    	<mu1>0.2</mu1>
+	    	<mu2>0.2</mu2>
+	    	<self_collide>1</self_collide>
+	    </gazebo>
+
+
+
+        <gazebo reference="${name}_foot">
+            <mu1>0.6</mu1>
+	    	<mu2>0.6</mu2>
+	    	<self_collide>1</self_collide>
+	    	<material>Gazebo/DarkGrey</material>
+	    	<kp  value="1000000.0"/>
+	    	<kd  value="1.0"/>
+            <maxVel>1.0</maxVel>
+            <maxContacts>1</maxContacts>
+            <sensor name="${name}_foot_contact_sensor" type="contact">
+                <always_on>true</always_on>
+                <update_rate>1000.0</update_rate>
+                <contact>
+                    <collision>${name}_lower_leg_fixed_joint_lump__${name}_foot_collision_1</collision>
+                </contact>
+                <!-- the sensor readings in terms of force torques are expressed in the lowerleg frame
+                because gazebo lumps the fake footframe with the real parent link, the normals are in the world frame-->
+                <plugin name="${name}_foot_bumper" filename="libgazebo_ros_bumper.so">
+                    <bumperTopicName>/go1/${name}_foot_bumper</bumperTopicName>
+                    <!--robotNamespace>solo</robotNamespace-->
+                    <frameName>${name}_foot</frameName>
+                </plugin>
+            </sensor>
+            <material>Gazebo/Black</material>
+        </gazebo>
+        
+        
+        
+        
+	</xacro:macro>
+</robot>
