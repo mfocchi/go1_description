@@ -35,7 +35,7 @@
 
     <!-- joint limits -->
     <xacro:property name="damping" value="0.01"/>
-    <xacro:property name="friction" value="0.2"/>
+    <xacro:property name="friction" value="0.0"/>
     <xacro:property name="haa_max" value="60"/>
     <xacro:property name="haa_min" value="-60"/>
     <xacro:property name="haa_velocity_max" value="30.1"/>
