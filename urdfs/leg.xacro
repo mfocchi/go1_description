@@ -14,7 +14,7 @@
             <parent link="trunk"/>
             <child link="${name}_hip"/>
             <axis xyz="1 0 0"/>
-            <!--dynamics damping="${damping}" friction="${friction}"/-->
+            <dynamics damping="${damping}" friction="${friction}"/>
             <xacro:if value="${(mirror_dae == True)}">
                 <limit effort="${haa_torque_max}" velocity="${haa_velocity_max}" lower="${haa_min*PI/180.0}" upper="${haa_max*PI/180.0}"/>
             </xacro:if>
@@ -42,7 +42,12 @@
                 </geometry>
                 <!-- <material name="orange"/> -->
             </visual>
-    
+            <collision>
+                <origin rpy="${PI/2.0} 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <cylinder length="${hip_length}" radius="${hip_radius}"/>
+                </geometry>
+            </collision>
             <inertial>
                 <origin rpy="0 0 0" xyz="${hip_com_x*front_hind} ${hip_com_y*mirror} ${hip_com_z}"/>
                 <mass value="${hip_mass}"/>
@@ -61,7 +66,12 @@
 
         <!-- this link is only for collision -->
         <link name="${name}_upperleg_shoulder">
-    
+            <collision>
+                <origin rpy="${PI/2.0} 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <cylinder length="${upperleg_shoulder_length}" radius="${upperleg_shoulder_radius}"/>
+                </geometry>
+            </collision>
         </link>
 
         <joint name="${name}_hfe_joint" type="revolute">
@@ -69,7 +79,7 @@
             <parent link="${name}_hip"/>
             <child link="${name}_upperleg"/>
             <axis xyz="0 1 0"/>
-            <!-- dynamics damping="${damping}" friction="${friction}"/ -->
+            <dynamics damping="${damping}" friction="${friction}"/>
             <limit effort="${hfe_torque_max}" velocity="${hfe_velocity_max}" lower="${hfe_min*PI/180.0}" upper="${hfe_max*PI/180.0}"/>
         </joint>
 
@@ -86,7 +96,12 @@
                 </geometry>
                 <!-- <material name="orange"/> -->
             </visual>
-
+            <collision>
+                <origin rpy="0 ${PI/2.0} 0" xyz="0 0 ${-upperleg_length/2.0}"/>
+                <geometry>
+                    <box size="${upperleg_length} ${upperleg_width} ${upperleg_height}"/>
+                </geometry>      
+            </collision>
             <inertial>
                 <origin rpy="0 0 0" xyz="${upperleg_com_x} ${upperleg_com_y*mirror} ${upperleg_com_z}"/>
                 <mass value="${upperleg_mass}"/>
@@ -102,7 +117,7 @@
             <parent link="${name}_upperleg"/>
             <child link="${name}_lowerleg"/>
             <axis xyz="0 1 0"/>
-            <!-- dynamics damping="${damping}" friction="${friction}"/-->
+            <dynamics damping="${damping}" friction="${friction}"/>
             <limit effort="${kfe_torque_max}" velocity="${kfe_velocity_max}" lower="${kfe_min*PI/180.0}" upper="${kfe_max*PI/180.0}"/>
         </joint>
 
@@ -114,7 +129,12 @@
                 </geometry>
                 <!-- <material name="orange"/> -->
             </visual>
-     
+            <collision>
+                <origin rpy="0 ${PI/2.0} 0" xyz="0 0 ${-lowerleg_length/2.0}"/>
+                <geometry>
+                    <box size="${lowerleg_length} ${lowerleg_width} ${lowerleg_height}"/>
+                </geometry>      
+            </collision>
             <inertial>
                 <origin rpy="0 0 0" xyz="${lowerleg_com_x} ${lowerleg_com_y} ${lowerleg_com_z}"/>
                 <mass value="${lowerleg_mass}"/>
@@ -135,11 +155,16 @@
             <visual>
                 <origin rpy="0 0 0" xyz="0 0 0"/>
                 <geometry>
-                    <sphere radius="${foot_radius}"/>
+                    <sphere radius="${foot_radius-0.01}"/>
                 </geometry>
                 <!-- <material name="orange"/> -->
             </visual>
-     
+            <collision>
+                <origin rpy="0 0 0" xyz="0 0 0"/>
+                <geometry>
+                    <sphere radius="${foot_radius}"/>
+                </geometry>
+            </collision>
             <inertial>
                 <mass value="${foot_mass}"/>
                 <inertia
