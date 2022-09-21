@@ -51,12 +51,8 @@ if __name__ == "__main__":
         for joint in robot.group_state_map['home'].joints:
                 joint_names.append(joint.name)
                 joint_positions.append(joint.value[0])
-                print(joint.value[0])
-
-        gazebo_namespace = '/gazebo'
 
         rospy.wait_for_service('%s/set_model_configuration'%(gazebo_namespace))
-        rospy.sleep(sleep_time)
         try:
                 success = gazebo_interface.set_model_configuration_client(model_name, param_name,
                                                                   joint_names, joint_positions, gazebo_namespace)
@@ -66,7 +62,8 @@ if __name__ == "__main__":
         rospy.sleep(sleep_time)
         rospy.wait_for_service('%s/unpause_physics'%(gazebo_namespace))
         try:
-                print("go0 completed")# success = unpause(gazebo_namespace)
+                success = unpause(gazebo_namespace)
         except (rospy.ServiceException, e):
                 print ( "unpause physics service call failed: %s"%e)
+        rospy.sleep(1.)
             
