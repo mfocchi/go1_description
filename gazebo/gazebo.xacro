@@ -29,7 +29,7 @@
 		</plugin>
 	</gazebo>
 
-	<!-- Show the trajectory of trunk center. -->
+	<!-- Show the trajectory of trunk center. 
     <gazebo>
         <plugin name="3dplot" filename="libLinkPlot3DPlugin.so">
             <frequency>10</frequency>
@@ -39,15 +39,15 @@
                 <material>Gazebo/Yellow</material>
             </plot>
         </plugin>
-    </gazebo>
+    </gazebo>-->
 
-    <!-- Apply force to trunck -->
+    <!-- Apply force to trunck 
     <gazebo>
         <plugin filename="libgazebo_ros_force.so" name="gazebo_ros_force">
             <bodyName>trunk</bodyName>
             <topicName>/apply_force/trunk</topicName>
         </plugin>
-    </gazebo>
+    </gazebo>-->
 
 
 
