@@ -49,6 +49,9 @@
         </plugin>
     </gazebo>
 
+
+
+
     <!-- IMU -->
     <gazebo reference="imu_link">
         <gravity>true</gravity>
@@ -56,12 +59,42 @@
             <always_on>true</always_on>
             <update_rate>1000</update_rate>
             <visualize>true</visualize>
+
+	    <imu>
+            <linear_acceleration>
+                <x>
+                    <noise type="gaussian">
+                        <mean>0.0</mean>
+                        <stddev>0.01</stddev>
+                        <bias_mean>0.0</bias_mean>
+                        <bias_stddev>0</bias_stddev>
+                    </noise>
+                </x> 
+        	<y>
+                    <noise type="gaussian">
+                        <mean>0.0</mean>
+                        <stddev>0.01</stddev>
+                        <bias_mean>0.0</bias_mean>
+                        <bias_stddev>0</bias_stddev>
+                    </noise>
+                </y>   
+        	<z>
+                    <noise type="gaussian">
+                        <mean>1.0</mean>
+                        <stddev>0.01</stddev>
+                        <bias_mean>0.0</bias_mean>
+                        <bias_stddev>0.0</bias_stddev>
+                    </noise>
+                </z>          
+            </linear_acceleration>
+            </imu>
+
             <topic>__default_topic__</topic>
             <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
-                <topicName>/trunk_imu</topicName>
+                <topicName>$(arg robot_name)/trunk_imu</topicName>
                 <bodyName>imu_link</bodyName>
                 <updateRateHZ>1000.0</updateRateHZ>
-                <gaussianNoise>0.0</gaussianNoise>
+                <gaussianNoise>0.01</gaussianNoise>    <!-- STD dev sqrt of covariance -->
                 <xyzOffset>0 0 0</xyzOffset>
                 <rpyOffset>0 0 0</rpyOffset>
                 <frameName>imu_link</frameName>
