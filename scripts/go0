@@ -13,7 +13,7 @@ def unpause(gazebo_namespace):
         rospy.loginfo("Waiting for service %s/unpause_physics"%gazebo_namespace)
         rospy.wait_for_service(gazebo_namespace+'/unpause_physics')
         rospy.loginfo("temporary hack to **fix** the -J joint position option (issue #93), sleeping for 1 second to avoid race condition.");
-        time.sleep(1)
+        rospy.sleep(1.0)
         try:
                 unpause_physics = rospy.ServiceProxy(gazebo_namespace+'/unpause_physics', Empty)
                 rospy.loginfo("Calling service %s/unpause_physics"%gazebo_namespace)
