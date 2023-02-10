@@ -46,29 +46,31 @@
 
        
         
-
+         
         <gazebo reference="${name}_foot">
             <kp>1000000.0</kp>
             <kd>100.0</kd>
             <mu1>1.0</mu1>
             <mu2>1.0</mu2>
             <maxVel>1.0</maxVel>
-			<maxContacts>1</maxContacts>
-            <sensor name="${name}_foot_contact_sensor" type="contact">
-                <always_on>true</always_on>
-                <update_rate>1000.0</update_rate>
-                <contact>
-                    <collision>${name}_lowerleg_fixed_joint_lump__${name}_foot_collision_1</collision>
-                </contact>
-                <!-- the sensor readings in terms of force torques are expressed in the lowerleg frame
-                because gazebo lumps the fake footframe with the real parent link, the normals are in the world frame-->
-                <plugin name="${name}_foot_bumper" filename="libgazebo_ros_bumper.so">
-                    <bumperTopicName>/go1/${name}_foot_bumper</bumperTopicName>
-                    <!--robotNamespace>solo</robotNamespace-->
-                    <frameName>${name}_foot</frameName>
-                </plugin>
-            </sensor>
-            <material>Gazebo/Black</material>
+		    <maxContacts>1</maxContacts>
+		    <xacro:if value="${(load_force_sensors == 'true')}"> 
+                <sensor name="${name}_foot_contact_sensor" type="contact">
+                    <always_on>true</always_on>
+                    <update_rate>1000.0</update_rate>
+                    <contact>
+                        <collision>${name}_lowerleg_fixed_joint_lump__${name}_foot_collision_1</collision>
+                    </contact>
+                    <!-- the sensor readings in terms of force torques are expressed in the lowerleg frame
+                    because gazebo lumps the fake footframe with the real parent link, the normals are in the world frame-->
+                    <plugin name="${name}_foot_bumper" filename="libgazebo_ros_bumper.so">
+                        <bumperTopicName>/go1/${name}_foot_bumper</bumperTopicName>
+                        <!--robotNamespace>solo</robotNamespace-->
+                        <frameName>${name}_foot</frameName>
+                    </plugin>
+                </sensor>    
+            </xacro:if>
+            <material>Gazebo/Black</material>    
         </gazebo>
         
         
