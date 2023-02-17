@@ -33,6 +33,19 @@
     <!-- <xacro:property name="trunk_offset_z" value="0.01675"/> -->
     <xacro:property name="hip_offset" value="0.08"/>
 
+    <!-- motor locations (left front) -->
+    <xacro:property name="haa_motor_offset_x" value="0.11215"/>
+    <xacro:property name="haa_motor_offset_y" value="0.04675"/>
+    <xacro:property name="haa_motor_offset_z" value="0.0"/>
+    
+    <xacro:property name="hfe_motor_offset_x" value="0.0"/>
+    <xacro:property name="hfe_motor_offset_y" value="-0.00015"/>
+    <xacro:property name="hfe_motor_offset_z" value="0.0"/>
+    
+    <xacro:property name="kfe_motor_offset_x" value="0.0"/>
+    <xacro:property name="kfe_motor_offset_y" value="-0.03235"/>
+    <xacro:property name="kfe_motor_offset_z" value="0.0"/>
+
     <!-- joint limits -->
     <xacro:property name="damping" value="0.00"/>
     <xacro:property name="friction" value="0.0"/>
@@ -97,6 +110,18 @@
     <xacro:property name="lowerleg_iyy" value="0.00295576935"/>
     <xacro:property name="lowerleg_iyz" value="-0.000024397752"/>
     <xacro:property name="lowerleg_izz" value="0.000030273372"/>
+    
+    <!-- motor -->
+    <xacro:property name="motor_mass" value="0.089"/>
+    <xacro:property name="motor_com_x" value="0.0"/>
+    <xacro:property name="motor_com_y" value="0.0"/>
+    <xacro:property name="motor_com_z" value="0.0"/>
+    <xacro:property name="motor_ixx" value="0.000059647"/>
+    <xacro:property name="motor_ixy" value="0.0"/>
+    <xacro:property name="motor_ixz" value="0.0"/>
+    <xacro:property name="motor_iyy" value="0.000111842"/>
+    <xacro:property name="motor_iyz" value="0.0"/>
+    <xacro:property name="motor_izz" value="0.000059647"/>
 
     <!-- foot -->
     <xacro:property name="foot_mass" value="0.06"/>
