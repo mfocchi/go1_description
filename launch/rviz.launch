@@ -4,7 +4,7 @@
 	<arg name="rviz_conf" default="$(find go1_description)/rviz/conf.rviz"/>
 	
 	<!-- send hyq urdf to param server and spawn it -->
-	<include file="$(find solo_description)/launch/upload.launch">	</include>
+	<include file="$(find go1_description)/launch/upload.launch">	</include>
 
 	<node pkg="tf" type="static_transform_publisher" name="world_broadcaster" args="0 0 0 0 0 0   /base_link /world  200"/>
 
