@@ -52,15 +52,15 @@
     <xacro:property name="haa_max" value="360"/>
     <xacro:property name="haa_min" value="-360"/>
     <xacro:property name="haa_velocity_max" value="3000"/>
-    <xacro:property name="haa_torque_max" value="2370"/>
+    <xacro:property name="haa_torque_max" value="23.70"/>
     <xacro:property name="hfe_max" value="360"/>
     <xacro:property name="hfe_min" value="-360"/>
     <xacro:property name="hfe_velocity_max" value="3000"/>
-    <xacro:property name="hfe_torque_max" value="2370"/>
+    <xacro:property name="hfe_torque_max" value="23.70"/>
     <xacro:property name="kfe_max" value="360"/>
     <xacro:property name="kfe_min" value="-360"/>
     <xacro:property name="kfe_velocity_max" value="3000"/>
-    <xacro:property name="kfe_torque_max" value="2370"/>
+    <xacro:property name="kfe_torque_max" value="23.70"/>
 
     <!-- dynamics inertial value        total 12.84kg -->
     <!-- trunk -->
