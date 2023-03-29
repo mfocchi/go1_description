@@ -16,10 +16,10 @@
             <axis xyz="1 0 0"/>
             <dynamics damping="${damping}" friction="${friction}"/>
             <xacro:if value="${(mirror_dae == True)}">
-                <limit effort="${haa_torque_max}" velocity="${haa_velocity_max}" lower="${haa_min*PI/180.0}" upper="${haa_max*PI/180.0}"/>
+                <limit effort="${haa_torque_max}" velocity="${haa_velocity_max}" lower="${haa_min}" upper="${haa_max}"/>
             </xacro:if>
             <xacro:if value="${(mirror_dae == False)}">
-                <limit effort="${haa_torque_max}" velocity="${haa_velocity_max}" lower="${-haa_max*PI/180.0}" upper="${-haa_min*PI/180.0}"/>
+                <limit effort="${haa_torque_max}" velocity="${haa_velocity_max}" lower="${-haa_max}" upper="${-haa_min}"/>
             </xacro:if>            
         </joint>
 
@@ -124,7 +124,7 @@
             <child link="${name}_upperleg"/>
             <axis xyz="0 1 0"/>
             <dynamics damping="${damping}" friction="${friction}"/>
-            <limit effort="${hfe_torque_max}" velocity="${hfe_velocity_max}" lower="${hfe_min*PI/180.0}" upper="${hfe_max*PI/180.0}"/>
+            <limit effort="${hfe_torque_max}" velocity="${hfe_velocity_max}" lower="${hfe_min}" upper="${hfe_max}"/>
         </joint>
         
         <!-- hfe motor -->
@@ -204,7 +204,7 @@
             <child link="${name}_lowerleg"/>
             <axis xyz="0 1 0"/>
             <dynamics damping="${damping}" friction="${friction}"/>
-            <limit effort="${kfe_torque_max}" velocity="${kfe_velocity_max}" lower="${kfe_min*PI/180.0}" upper="${kfe_max*PI/180.0}"/>
+            <limit effort="${kfe_torque_max}" velocity="${kfe_velocity_max}" lower="${kfe_min}" upper="${kfe_max}"/>
         </joint>
 
         <link name="${name}_lowerleg">
