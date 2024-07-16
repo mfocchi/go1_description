@@ -12,8 +12,7 @@
     </xacro:include>
     
 
-    <!-- <xacro:stairs stairs="15" xpos="0" ypos="0" zpos="0" /> -->
-    <xacro:arg name="new_gazebo_version" default="false"/>
+  
     
     <!-- include cameras-->	
     <xacro:arg name="cameras" default="false"/>
@@ -28,18 +27,9 @@
     <!-- Rollover Protection mode will add an additional stick on the top, use "true" or "false" to switch it. -->
     <xacro:property name="rolloverProtection" value="false"/>
 
-    <!-- Floating-base Joint -->
-    <xacro:unless value="$(arg new_gazebo_version)">  
-        <!-- Floating-base Joint -->
-        <link name="world"/>
-		<joint name="floating_base_joint" type="floating" >
-		    <origin rpy="0 0 0" xyz="0 0 0"/>
-		    <parent link="world"/>
-		    <child link="base_link"/>
-		</joint>
-    </xacro:unless>
 
     <link name="base_link" />
+    
 
     <joint name="floating_base" type="fixed">
         <origin rpy="0 0 0" xyz="0 0 0"/>

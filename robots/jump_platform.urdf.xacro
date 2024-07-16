@@ -1,26 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
 <robot name="jump_platform" xmlns:xacro="http://ros.org/wiki/xacro">
 
- <material name="Black">
-    <color rgba="${0/255} ${0/255} ${0/255} 1.0"/>
-  </material>
-
- <material name="Red">
-    <color rgba="${255/255} ${100/255} ${0/255} 1.0"/>
-  </material>
-
- <material name="Brown">
-    <color rgba="${198/255} ${94/255} ${42/255} 1.0"/>
-  </material>
-
- <material name="DarkBrown">
-    <color rgba="${144/255} ${68/255} ${30/255} 1.0"/>
-  </material>
-
- <!--https://www.textures.com/browse/cliffs/2060 -->
-
-
-<link name="jump_platform">
+<link name="link">
 	<inertial>
 		<mass value="10"/>
 		<inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
@@ -34,13 +15,14 @@
 		<material name="Brown"/><!--rviz"/-->
 		
 	</visual>
+	
 	<collision name="box">
-		<origin xyz="0 0 0" rpy="0 0 0"/>
-		<geometry>
-			<box size="0.75 0.75 0.005"/>
-		</geometry>
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+	<geometry>
+		<box size="0.75 0.75 0.005"/>
+	</geometry>
 
-		
+	
 		<surface>
 		<bounce>
 		<restitution_coefficient>0.01</restitution_coefficient>
@@ -63,20 +45,17 @@
 		</surface>
 	</collision>
 
-	</link>
+</link>
 
 
 	
 
-	<gazebo>
-	    <static>true</static>
-	</gazebo>
+<gazebo>
+    <static>true</static>
+</gazebo>
 
-	 <!--one of this /usr/share/gazebo-11/media/materials/scripts/gazebo.material   is for gazebo -->
+ <!--one of this /usr/share/gazebo-11/media/materials/scripts/gazebo.material   is for gazebo -->
 
-	<gazebo reference="wall">
-   	 <material>Gazebo/RockWall</material>
-  	</gazebo>
 
 
 </robot>

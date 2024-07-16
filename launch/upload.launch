@@ -8,13 +8,13 @@
 
         <!-- Load the sensors that measured the internal wrench in the joints -->
         <arg name="internal_wrench" default="false"/>
-        <arg name="new_gazebo_version" default="true" />
-	    
-	    <param name="task_period"  value="$(arg task_period)" />
+
+	   
+        <param name="task_period"  value="$(arg task_period)" />
 
         <!-- send robot urdf to param server -->
         <arg name="find_robot_description" value="$(eval find(robot_name+'_description'))"/>
-	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(arg find_robot_description)/robots/$(arg robot_name).urdf.xacro' new_gazebo_version:=$(arg new_gazebo_version)  task_period:=$(arg task_period) load_force_sensors:=$(arg load_force_sensors)"/> 
+	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(arg find_robot_description)/robots/$(arg robot_name).urdf.xacro'   task_period:=$(arg task_period) load_force_sensors:=$(arg load_force_sensors)"/> 
 
 	
 
