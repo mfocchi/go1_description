@@ -8,7 +8,7 @@
     <xacro:include filename="$(find go1_description)/urdfs/depthCamera.xacro"/>
     <xacro:include filename="$(find go1_description)/urdfs/ultraSound.xacro"/>
     <xacro:include filename="$(find go1_description)/gazebo/gazebo.xacro">
-        <xacro:arg name="task_period" value="$(arg task_period)"/>
+    <xacro:arg name="task_period" value="$(arg task_period)"/>
     </xacro:include>
     
 

@@ -5,11 +5,7 @@
         <arg name="task_period" default="0.001"/>
         <arg name="load_force_sensors" default="false"/>
 
-
-        <!-- Load the sensors that measured the internal wrench in the joints -->
-        <arg name="internal_wrench" default="false"/>
-
-	   
+   
         <param name="task_period"  value="$(arg task_period)" />
 
         <!-- send robot urdf to param server -->
