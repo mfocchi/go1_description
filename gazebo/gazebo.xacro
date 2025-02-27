@@ -27,6 +27,8 @@
 			<alwaysOn>true</alwaysOn>
                         <updateRate>${1/ $(arg task_period)}</updateRate>
 		</plugin>
+		
+		<plugin name="set_mass_plugin" filename="libset_mass_plugin.so"/>
 	</gazebo>
 
 	<!-- Show the trajectory of trunk center. 
