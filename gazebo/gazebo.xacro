@@ -29,6 +29,8 @@
 		</plugin>
 		
 		<plugin name="set_mass_plugin" filename="libset_mass_plugin.so"/>
+	        <plugin name="set_damping_plugin" filename="libset_damping_plugin.so"/> 
+		
 	</gazebo>
 
 	<!-- Show the trajectory of trunk center. 
